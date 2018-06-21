@@ -1,0 +1,19 @@
+{% load static %}
+<!Doctype HTML>
+<html lang='en'>
+<head>
+<meta charset="utf-8">
+<title>
+  {% block title %}
+      Untitled Document
+  {% endblock title %}
+</title>
+<link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+{% block content %}
+  <h3>Welcome</h3>>
+  <p>This is the site template</p>
+{% endblock content %}
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h3>Add a new course</h3>
+    <div class="form">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+        <form action='process' method='POST'>{% csrf_token %}
+            Name: <input type='text' name='name'>
+            Description: <textarea rows="6" name='description'></textarea>
+            <button class='button' type='submit'>Add</button>
+        </form>
+    </div>
+</section>
+
+<main>
+    <table>
+        <h3>Courses</h3>
+        <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.name }}</td>
+            <td>{{ course.description.desc }}</td>
+            <td>{{ course.created_at }}</td>
+            <td>
+                <a href="{% url 'destroy' id=course.id %}">remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</main>
+{% endblock content %}

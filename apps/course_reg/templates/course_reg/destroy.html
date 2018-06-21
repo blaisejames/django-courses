@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+    <h3>Are you sure you want to delete the following course?</h3>
+    {% for course in courses %}   
+    <p>Name: {{ course }}</p>
+    <p>Description: {{ course.description }}</p>
+    <form action='{% url 'index' %}' method='GET'>
+            <button class='button small gray' type='submit'>No</button>
+    </form>
+    <form action='{% url 'delete' id=course.id %}' method='GET'>
+            <button class='button small red' type='submit'>Yes I want to delete this</button>
+    </form>
+    {% endfor %}
+</main>
+{% endblock content %}
